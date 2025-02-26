@@ -4,6 +4,7 @@ import { PORT } from './config/env';
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 app.get('/', (req: Request, res: Response) => {
   // Send a response to the client

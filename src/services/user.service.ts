@@ -10,7 +10,8 @@ export class UserService {
         throw new Error("Password is required");
         }
 
-        const hashedPassword = await bcrypt.hash(userData.password, 10);
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(userData.password, salt);
 
         const user = this.userRepo.create({
         ...userData,
@@ -36,7 +37,8 @@ export class UserService {
 
     async updateUser(id: string, updateData: Partial<User>): Promise<User | null> {
         if (updateData.password) {
-        updateData.password = await bcrypt.hash(updateData.password, 10);
+            const salt = await bcrypt.genSalt(10);
+            updateData.password = await bcrypt.hash(updateData.password, salt);
         }
 
         await this.userRepo.update(id, updateData);

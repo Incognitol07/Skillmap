@@ -7,14 +7,13 @@ import { TagService } from './tag.service';
 export class RoadmapService {
     private tagService = new TagService();
     private roadmapRepo = AppDataSource.getRepository(Roadmap);
-    private tagRepo = AppDataSource.getRepository(Tag);
 
     async createRoadmap(user: User, roadmapData: Partial<Roadmap>, tagNames: string[]): Promise<Roadmap> {
         const tags: Tag[] = [];
 
         for (const name of tagNames) {
         let tag = await this.tagService.findOrCreateTag(name);
-        
+
         tags.push(tag);
         }
 

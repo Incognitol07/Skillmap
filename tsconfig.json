@@ -23,7 +23,9 @@
         "@config/*": ["config/*"]      // Cleaner imports for config files
         },
       /* Source Maps (Debugging) */
-        "sourceMap": true                // Generate .map files for debugging
+        "sourceMap": true,                // Generate .map files for debugging
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     },
 
     /* Include/Exclude Files */
